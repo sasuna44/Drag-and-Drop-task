@@ -3,10 +3,9 @@ document.getElementById("detailsButton").addEventListener("click", showDetails);
 const  map_container = document.getElementById('map');
 const informationDiv = document.getElementById("information");
 
-
 function showMap() {
     if (!navigator.geolocation) {
-        map_container.innerHTML ='Geolocation is not supported by your browser!';
+        map_container.innerText = 'Geolocation is not supported by your browser!';
         return;
     }
     
@@ -19,9 +18,15 @@ function showMap() {
             zoom: 12
         };
         
-        const map = new google.maps.Map(map_container, mapOptions);
+        const map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        
+        const marker = new google.maps.Marker({
+            position: { lat: latitude, lng: longitude },
+            map: map,
+            title: 'Your Location'
+        });
     }, function(error) {
-        map_container.innerText='Unable to retrieve your location!' ;
+        map_container.innerText = 'Unable to retrieve your location!';
     });
 }
 
