@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAP</title>
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- google map api -->
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB90FxtYG_ybAYXGkz0ybkmkboE2nEbezI"></script>
+</head>
+<body>
+    <h1>Get My Location </h1>
+    <div class="container">
+        <div class="controlers">
+            <button id="showMapButton" type="button">Show Map</button>
+            <button id="detailsButton" type="button">Details</button>
+        </div>
+        <div class="map" id="map"></div>
+        <div class="information" id="information">
+            <p class="latitude"></p>
+            <p class="longitude"></p>
+        </div>
+    </div>
+    
+    <!-- js -->
+    <script src="js/main.js"></script>
+</body>
+</html>
