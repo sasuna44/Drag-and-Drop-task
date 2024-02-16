@@ -1,0 +1,113 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    border: 1px solid red;
+}
+.container{
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    margin: 10px auto;
+}
+
+img{
+    width:24%;
+}
+.right nav{
+    display: grid;
+    align-items: center;
+    background-color: rgb(223, 181, 129);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.right nav ul{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.right nav ul li{
+    list-style: none;
+    padding: 10px;
+}
+.right nav ul li a{
+    text-decoration: none;
+    color: white;
+}
+.right nav ul li:hover{
+    background-color: rgb(196, 134, 59);
+
+}
+.images{
+    height: 93%;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+.right{
+    width: 75%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+}
+.left{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.nav-bar{
+    margin: 15px 0;
+}
+.nav-bar a{
+    text-decoration: none;
+    display: block;
+    color: gray;
+    background-color: var(--main-color);
+    padding: 10px;
+}
+.nav-bar a:hover{
+    color: black;
+}
+.icons{
+    background-color: var(--main-color);
+    padding: 5px;
+    display: flex;
+}
+.icons i{
+    padding-right: 20px ;
+    font-size: 20px;
+    cursor: pointer;
+}
+.content p{
+    background-color: var(--main-color);
+    padding: 10px;
+    color: gray;
+    line-height: 1.2;
+}
+
+.photos{
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+@media screen and (max-width: 600px){
+    .container{
+        flex-direction: column;
+    }
+    .left{
+        width: 100%;
+    }
+    .right{
+        width: 100%;
+    }
+}
