@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #06283D;
+}
+
+.container {
+    margin: 5em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 4em;
+    text-align: center;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.drag-row,.drop-row {
+    width: 100%;
+    height: 20em;
+    display: flex;
+   flex-wrap: wrap;
+    justify-content: space-evenly;
+    border-radius: 2em;
+    align-items: center;
+    background-color: #1363DF;
+    
+}
+.drag-row img,.drop-row img {
+    width:20%; 
+    max-width: 10em; 
+    height: 10em;
+    object-fit: cover;
+    transition: ease-in-out 0.5s;
+}
+.drag-row img:hover{
+    cursor: pointer;
+    transform: rotate(180deg) scale(1.2) ;
+}
