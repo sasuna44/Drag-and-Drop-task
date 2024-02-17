@@ -18,7 +18,6 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Enter Information</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form id="userInfoForm">
@@ -68,7 +67,9 @@
             cardContainer.innerHTML += card;
         }
 
-        const modal = new bootstrap.Modal(document.getElementById("exampleModal"));
+        const modal = new bootstrap.Modal(document.getElementById("exampleModal"), {
+            keyboard: false
+        });
 
         document.getElementById("userInfoForm").addEventListener("submit", function(event) {
             event.preventDefault();
@@ -87,9 +88,6 @@
         document.getElementById("cancelButton").addEventListener("click", function() {
             modal.hide();
         });
-
-       
-
     </script>
 </body>
 </html>
