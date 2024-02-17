@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Dropdown Menu </title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row">
+            <div class="tab-pane fade show active" id="viewProducts" role="tabpanel" aria-labelledby="viewProducts-tab">
+                <div id="productsContainer" class="row">
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="productTabsContent">
+            
+            
+            <div class="py-5" id="addProduct" role="" aria-labelledby="addProduct-tab">
+                <form id="addProductForm" class="mt-4">
+                    <div class="mb-3">
+                        <label for="productName" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="productName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="productImage" class="form-label">Product Image </label>
+                        <input type="text" class="form-control" id="productImage" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="productPrice" class="form-label">Product Price</label>
+                        <input type="number" class="form-control" id="productPrice" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="productStock" class="form-label">Product Stock</label>
+                        <input type="number" class="form-control" id="productStock" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const products = [
+            { name: "Beleza | Gold-tone Stainless Steel Green Marble Watch", image: "img/img1.jpg", price: 10, stock: 20 },
+            { name: "Paz | Green Stainless Steel One-hand Dress Watch", image: "img/img2.jpg", price: 15, stock: 30 },
+            { name: "Men KRWGB9006102 Water-Resistant Analogue Watch", image: "img/img3.jpg", price: 20, stock: 25 }
+        ];
+
+        function displayProducts() {
+            const productsContainer = document.getElementById("productsContainer");
+            productsContainer.innerHTML = "";
+            products.forEach(product => {
+                const card = `
+                    <div class="col-4">
+                        <div class="card">
+                            <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                            <div class="card-body">
+                                <h5 class="card-title">${product.name}</h5>
+                                <p class="card-text">Price: $${product.price}</p>
+                                <p class="card-text">Stock: ${product.stock}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productsContainer.innerHTML += card;
+            });
+        }
+
+        displayProducts();
+
+        const addProductForm = document.getElementById("addProductForm");
+        addProductForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const productName = document.getElementById("productName").value;
+            const productImage = document.getElementById("productImage").value;
+            const productPrice = parseFloat(document.getElementById("productPrice").value);
+            const productStock = parseInt(document.getElementById("productStock").value);
+
+            products.push({ name: productName, image: productImage, price: productPrice, stock: productStock });
+
+            displayProducts();
+
+            addProductForm.reset();
+        });
+    </script>
+</body>
+</html>

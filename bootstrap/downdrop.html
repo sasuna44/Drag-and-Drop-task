@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Dropdown Menu</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .dropdown-menu .active,
+    .dropdown-menu .active:hover {
+      background-color: #007bff !important;
+      color: #fff !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container my-5 py-5">
+    <div class="btn-group">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="#">Menu item 1</a></li>
+        <li><a class="dropdown-item" href="#">Menu item 2</a></li>
+        <li><a class="dropdown-item" href="#">Menu item 3</a></li>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+        <li><a class="dropdown-item" href="#">Menu item 1</a></li>
+        <li><a class="dropdown-item" href="#">Menu item 2</a></li>
+        <li><a class="dropdown-item" href="#">Menu item 3</a></li>
+      </ul>
+    </div>
+
+    <div class="btn-group dropend">
+      <button type="button" class="btn btn-danger dropdown-toggle" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropend
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+        <li><a class="dropdown-item" href="#">Menu item 1</a></li>
+        <li><a class="dropdown-item" href="#">Menu item 2</a></li>
+        <li><a class="dropdown-item" href="#">Menu item 3</a></li>
+      </ul>
+    </div>
+
+    <div class="btn-group dropup">
+      <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropup
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
+        <li><a class="dropdown-item" href="#">Menu item 1</a></li>
+        <li><a class="dropdown-item" href="#">Menu item 2</a></li>
+        <li><a class="dropdown-item" href="#">Menu item 3</a></li>
+      </ul>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const dropdownMenuItems = document.querySelectorAll(".dropdown-menu a.dropdown-item");
+
+      dropdownMenuItems.forEach(function (item) {
+        item.addEventListener("mouseover", function () {
+          dropdownMenuItems.forEach(function (resetItem) {
+            resetItem.classList.remove("active");
+          });
+          this.classList.add("active");
+        });
+
+        item.addEventListener("click", function () {
+          dropdownMenuItems.forEach(function (resetItem) {
+            resetItem.classList.remove("active");
+          });
+          this.classList.add("active");
+        });
+      });
+    });
+  </script>
+</body>
+</html>
