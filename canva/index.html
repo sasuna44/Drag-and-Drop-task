@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+    <!-- style -->
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #toolbar{
+        position : fixed;
+        top: 0;
+        background-color :#2f2f2f;
+        color: white;
+        font: bold 15px tahoma;
+        width : 100%;
+        display : -webkit-box;
+        -webkit-box-align:center;
+        padding: 10px;
+        }
+        #radiusbar{
+            width: 200px;
+            padding: 10px;
+        }
+        .increment-decrement ,#radiusvalue ,#savebtn{
+            padding: 8px 10px;
+            border-radius: 50%;
+            margin-left:10px ;
+            box-shadow: red 5px 5px 10px inset , blue -5px -5px 10px inset;
+        }
+        .increment-decrement:hover,#savebtn:hover{
+            cursor: pointer;
+            box-shadow: blue 5px 5px 10px inset , red -5px -5px 10px inset;
+        }
+        #savebar{
+            width: 200px;
+            margin-left: 30px;        
+        }
+        #savebtn{
+          margin-left: 25px;
+        }
+        #colorbar{
+            width: 600px;
+            margin-left: 50px;
+            padding: 10px;
+            display: -webkit-box;
+            -webkit-box-align: center;
+        }
+        .colors{
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+        .active {
+            border: 1px solid white;
+        }
+    </style>
+    <script>
+        window.addEventListener('load' ,doitfirst);
+        function doitfirst(){
+            canvas = document.getElementById('mycanvas');
+            context = canvas.getContext('2d'); 
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            isdrawable = false; 
+            canvas.addEventListener('mousemove',drawcircle);
+            canvas.addEventListener('mousedown',enabledrawing);
+            canvas.addEventListener('mouseup',disabledrawing);
+
+             radius = 10;
+             increment = document.getElementById('increment');
+             decrement = document.getElementById('decrement');
+             radiusvalue = document.getElementById('radiusvalue');
+            increment.addEventListener('click',increaseradius);
+            decrement.addEventListener('click',decreaseradius);
+
+             colorbar = document.getElementById('colorbar'); 
+             allcolors = ['red','blue','green','yellow','orange','purple','brown','gray']; 
+            for(var i = 0 ; i <allcolors.length;i++){
+                 createddiv = document.createElement('div');
+                createddiv.style.backgroundColor = allcolors[i];
+                createddiv.addEventListener('click',changecolor);
+                createddiv.className = 'colors';
+                if(allcolors[i] == localStorage.getItem('selectedcolor')){
+                    createddiv.className +=' active';
+                    context.fillStyle = allcolors[i] ;
+                }
+                colorbar.appendChild(createddiv);
+            }
+        }
+        function changecolor(e){
+             oldselectedcolor = document.getElementsByClassName('active')[0];
+            if(oldselectedcolor != null)
+            oldselectedcolor.className = 'colors';
+             newclickedone = e.target;
+            newclickedone.className +=' active';
+            context.fillStyle = newclickedone.style.backgroundColor;
+            localStorage.setItem('selectedcolor',newclickedone.style.backgroundColor);
+
+        }
+        function increaseradius(){
+            radius++;
+            checkradius(radius);
+        }
+        function decreaseradius(){
+            radius--;
+            checkradius(radius);
+        }
+        function checkradius(newradius){
+            if(newradius>50){
+                newradius = 50;
+            }
+            if(newradius<10){
+                newradius = 10;
+            }
+            radius= newradius;
+            radiusvalue.innerHTML = radius;            
+        }
+        function disabledrawing(){
+            isdrawable = false;
+        }
+        function enabledrawing(){
+            isdrawable = true;
+        }
+       
+        function drawcircle(e){
+            if(isdrawable){
+             rect = canvas.getBoundingClientRect();
+             x = e.clientX - rect.left;
+             y = e.clientY - rect.top;
+            context.beginPath(); 
+            context.arc(x, y, radius, 0, Math.PI*2);
+            context.fill();
+            context.closePath();
+            
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="toolbar">
+        <div id="radiusbar">
+            <label>Radius</label>
+            <span id="radiusvalue">10</span>
+            <span id="increment" class="increment-decrement">+</span>
+            <span id="decrement" class="increment-decrement">-</span>
+        </div>
+        <div id="savebar">
+            <span id="savebtn">save</span>
+        </div>
+        <div id="colorbar">
+            <!-- <div  class="colors" style="background-color: red;"></div>
+            <div  class="colors" style="background-color: blue;"></div>
+            <div  class="colors" style="background-color: green;"></div>
+            <div  class="colors" style="background-color: yellow;"></div>
+            <div  class="colors" style="background-color: orange;"></div>
+            <div  class="colors" style="background-color: purple;"></div>
+            <div  class="colors" style="background-color: brown;"></div>
+            <div  class="colors" style="background-color: gray;"></div> -->
+
+        </div>
+    </div>
+    <canvas id="mycanvas" style="display: block;">
+        sorry, your browser does not support canvas update and try again !
+    </canvas>
+    
+</body>
+</html>
